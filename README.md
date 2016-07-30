@@ -10,4 +10,4 @@
 ## Laravel
 
 ## Yii2
-+ [http://www.yiichina.com/doc/guide/2.0](Yii2官方文档)
++ [Yii2官方文档](http://www.yiichina.com/doc/guide/2.0)
