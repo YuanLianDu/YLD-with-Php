@@ -1,6 +1,13 @@
 # YLD-with-Php
 >深入学习php
 
+## TODO List
++ [ ] Nginx
+  - [ ] Nginx配置详情
+
++ [ ] Php
+  - [ ] Php常用字符串处理函数
+  - [ ] Php常用数组函数
 ## Resource
 
 ### Php
