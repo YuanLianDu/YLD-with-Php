@@ -29,17 +29,17 @@ signal可以是以下之一：
 + reload — 重新加载配置文件
 + reopen — 重新打开日志文件
 
-For example, to stop nginx processes with waiting for 
-the worker processes to finish serving current requests, 
-the following command can be executed:
 例如，要停止nginx等待工作进程完成服务当前请求的进程，可以执行以下命令：
 >`nginx -s quit`
+
 ```
 执行此命令的用户应与启动nginx的用户一致。
 ```
 
 在配置文件中的修改是不会被应用的，直到重新加载的命令被传送到nginx或者重新启动。
-重新加载配置，执行
+重新加载配置，执行:
 >`nginx -s reload`
+
+
 
 
