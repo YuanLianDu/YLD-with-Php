@@ -14,9 +14,32 @@ nginx有一个主进程和多个工作进程。主进程的目的是为了读取
 工作进程则做请求的实际处理。nginx采用基本的事件模型和操作系统以来机制来有效地分配工作进程之间的请求。
 工作进程地数量可以在配置文件中定义，也可以给出一个固定值，又或者调节到CPU内核可用地数量。
 
-The way nginx and its modules work is determined in the configuration file.
- By default, the configuration file is named nginx.conf and placed in the 
- directory /usr/local/nginx/conf, /etc/nginx, or /usr/local/etc/nginx.
-
-nginx和它的模块工作方式是在配置文件中定义地。默认情况下，这个配置文件名为`nginx.conf`。
+nginx和它的模块工作方式是在配置文件中定义的。默认情况下，这个配置文件名为`nginx.conf`。
 放置在`/usr/local/nginx/conf`,`/etc/nginx`或者`/usr/local/etc/nginx`目录。
+
+
+## 启动、停止和重启加载配置
+要启动nginx，运行可执行文件。一旦nginx被启动，它可以通过调用`-s`参数来执行控制。使用一下命令：
+>`nginx -s signal`
+
+signal可以是以下之一：
+
++ stop — 快速关机
++ quit — 正常关机
++ reload — 重新加载配置文件
++ reopen — 重新打开日志文件
+
+For example, to stop nginx processes with waiting for 
+the worker processes to finish serving current requests, 
+the following command can be executed:
+例如，要停止nginx等待工作进程完成服务当前请求的进程，可以执行以下命令：
+>`nginx -s quit`
+```
+执行此命令的用户应与启动nginx的用户一致。
+```
+
+在配置文件中的修改是不会被应用的，直到重新加载的命令被传送到nginx或者重新启动。
+重新加载配置，执行
+>`nginx -s reload`
+
+
