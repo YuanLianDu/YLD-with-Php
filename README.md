@@ -1,6 +1,10 @@
 # YLD-with-Php
 >深入学习php
 
+## Translate
++ [ ]Nginx
+ - [x]Beginner’s Guide－新手指南
+
 ## TODO List
 + [ ] Nginx
   - [ ] Nginx配置详情
