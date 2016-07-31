@@ -12,8 +12,8 @@
 如何配置nginx作为一个代理服务器以及如何与FastCGI应用链接。
 
 nginx有一个主进程和多个工作进程。主进程的目的是为了读取和评估配置并保持工作进程。
-工作进程则做请求的实际处理。nginx采用基本的事件模型和操作系统以来机制来有效地分配工作进程之间的请求。
-工作进程地数量可以在配置文件中定义，也可以给出一个固定值，又或者调节到CPU内核可用地数量。
+工作进程则做请求的实际处理。nginx采用基本的事件模型和操作系统依赖性机制来有效地分配工作进程之间的请求。
+工作进程的数量可以在配置文件中定义，也可以给出一个固定值，又或者调节到CPU内核可用的数量。
 参阅：[worker_processes](http://nginx.org/en/docs/ngx_core_module.html#worker_processes)
 
 nginx和它的模块工作方式是在配置文件中定义的。默认情况下，这个配置文件名为`nginx.conf`。
@@ -92,8 +92,8 @@ http {
 }
 ```
 
-一般情况下，配置文件中包含多个server块，它们之间以舰艇的端口号和server name来区分。
-一旦nginx决定了那个server处理请求，它测试在请求的对server块内定义的位置指令的参数头中指定的URI。
+一般情况下，配置文件中包含多个server块，它们之间以监听的端口号和server name来区分。
+一旦nginx决定了哪个server处理请求，它测试在请求的对server块内定义的位置指令的参数头中指定的URI。
 (it tests the URI specified in the request’s header against the parameters of the location directives defined inside the server block.)
 
 将location块添加到server块中，如下：
@@ -150,13 +150,11 @@ access.log和error.log文件找到原因。
 
 ## 设置一个简单的代理服务器
 nginx最常用的功能之一就是将其设置为代理服务器，这将意味着服务器接受请求，并将请求传送给代理服务器，
-然后从代理服务器取回响应，并将区徽的响应发送给客户端。
+然后从代理服务器取回响应，并将取回的响应发送给客户端。
 
 我们将会配置一个基础版本的代理服务器，它可以服务来自本地目录的图片文件请求，并将所有其它请求发送给代理服务器。
 在这个例子中，所有的服务器都被定义为一个单一的nginx实例。
 
-First, define the proxied server by adding one more server block to the nginx’s 
-configuration file with the following contents:
 首先，定义代理服务器通过在nginx的配置文件增加一个额外的server块，以下为添加的内容：
 >
 ```
@@ -225,15 +223,7 @@ server {
 
 ## 设置FastCGI代理
 nginx可用于路由请求FastCGI服务器，FastCGI服务器运行各种不同的框架和编程语言，如PHP，建立的应用。
-The most basic nginx configuration to work with a FastCGI server includes using 
-the fastcgi_pass directive instead of the proxy_pass directive, 
-and fastcgi_param directives to set parameters passed to a FastCGI server.
- Suppose the FastCGI server is accessible on localhost:9000. 
- Taking the proxy configuration from the previous section as a basis,
-  replace the proxy_pass directive with the fastcgi_pass directive and 
-  change the parameter to localhost:9000. In PHP, the SCRIPT_FILENAME parameter 
-  is used for determining the script name, and the QUERY_STRING parameter is used 
-  to pass request parameters. The resulting configuration would be:
+
 最常用与 FastCGI server工作的nginx配置，用`fastcgi_pass`指令替代了`proxy_pass`指令，并设置`fastcgi_param`
 参数传递给FastCGI server。假设FastCGI server通过`localhost:9000`可以访问。
 以上一节代理配置作为基础，用`fastcgi_pass`指令替换`proxy_pass`指令，并修改参数为`localhost:9000`。在PHP中，
