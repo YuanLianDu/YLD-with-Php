@@ -91,3 +91,33 @@ http {
     }
 }
 ```
+
+一般情况下，配置文件中包含多个server块，它们之间以舰艇的端口号和server name来区分。
+一旦nginx决定了那个server处理请求，它测试在请求的对server块内定义的位置指令的参数头中指定的URI。
+(it tests the URI specified in the request’s header against the parameters of the location directives defined inside the server block.)
+
+将location块添加到server块中，如下：
+>
+```
+location / {
+    root /data/www;
+}
+```
+
+与请求的URI相比，location块指定了“/”前缀。为了匹配请求，该URI会被添加到root指令指定的路径中，
+即，到`/data/www`，在本地文件系统中组成请求文件的路径。如果有多个匹配的location块，nginx会选择前缀最长的。
+上面的location块提供了最短的前缀，如果其他的location块匹配失败，这个location块就会被使用。
+
+接下来添加第二个location块：
+>
+```
+location /images/ {
+    root /data;
+}
+```
+
+它与带`/images/`的请求请求匹配。（location / ，当然也匹配，除非有更短的前缀。）
+
+It will be a match for requests starting with /images/ (location / also matches such requests, but has shorter prefix).
+
+
