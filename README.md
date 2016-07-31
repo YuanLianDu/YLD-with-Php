@@ -2,8 +2,8 @@
 >深入学习php
 
 ## Translate
-+ [ ]Nginx
- - [x]Beginner’s Guide－新手指南
++ [ ] Nginx
+ - [x] Beginner’s Guide－新手指南
 
 ## TODO List
 + [ ] Nginx
