@@ -1,4 +1,5 @@
-# 新手指南
+# ［nginx文档翻译系列］新手指南
+原文链接：http://nginx.org/en/docs/beginners_guide.html#conf_structure
 + 启动、停止和重启加载配置
 + 配置文件结构
 + 提供静态内容
@@ -57,3 +58,18 @@ signal可以是以下之一：
 >`ps -ax | grep nginx`
 
 有关发送信号给nginx的更多信息，请参阅[Controlling nginx](http://nginx.org/en/docs/control.html)。
+
+## 配置文件结构
+nginx是由模块组成的，这些模块在配置文件中又有指定的指令。
+指令被分成简单指令和块指令。简单指令包括名称和用空格分割的参数以及用来结尾的分号(;)。
+一个块指令和简单指令有相同的结构，但是它使用大括号({and})来包围一系列说明来替代使用分号作为结尾。
+如果一个块指令在大括号中有其他的指令，则称之为上下文（如：[events](http://nginx.org/en/docs/ngx_core_module.html#events),
+ [http](http://nginx.org/en/docs/http/ngx_http_core_module.html#http),
+ [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server), 
+ 和
+ [location](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)）。
+ 
+放在配置文件最外面的指令的称之为主文，`event`,`http`指令在主文中；`server`在`http`中，
+`location`在`server`中。
+
+‘#’开头的其它行是注释。
