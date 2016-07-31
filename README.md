@@ -23,5 +23,5 @@
 ### Laravel
 + [Laravel学院](http://laravelacademy.org/)
 
-## Yii2
+### Yii2
 + [Yii2官方文档](http://www.yiichina.com/doc/guide/2.0)
