@@ -224,6 +224,32 @@ server {
 还有更多的[指令](http://nginx.org/en/docs/http/ngx_http_proxy_module.html)可用于进一步配置代理链接。
 
 ## 设置FastCGI代理
+nginx可用于路由请求FastCGI服务器，FastCGI服务器运行各种不同的框架和编程语言，如PHP，建立的应用。
+The most basic nginx configuration to work with a FastCGI server includes using 
+the fastcgi_pass directive instead of the proxy_pass directive, 
+and fastcgi_param directives to set parameters passed to a FastCGI server.
+ Suppose the FastCGI server is accessible on localhost:9000. 
+ Taking the proxy configuration from the previous section as a basis,
+  replace the proxy_pass directive with the fastcgi_pass directive and 
+  change the parameter to localhost:9000. In PHP, the SCRIPT_FILENAME parameter 
+  is used for determining the script name, and the QUERY_STRING parameter is used 
+  to pass request parameters. The resulting configuration would be:
+最常用与 FastCGI server工作的nginx配置，用`fastcgi_pass`指令替代了`proxy_pass`指令，并设置`fastcgi_param`
+参数传递给FastCGI server。假设FastCGI server通过`localhost:9000`可以访问。
+以上一节代理配置作为基础，用`fastcgi_pass`指令替换`proxy_pass`指令，并修改参数为`localhost:9000`。在PHP中，
+`SCRIPT_FILENAME`参数用来确定脚本名，`QUERY_STRING`参数用来传递请求参数。配置文件结果应该是:
+>
+```
+server {
+    location / {
+        fastcgi_pass  localhost:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param QUERY_STRING    $query_string;
+    }
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+}
+```
 
-
-
+这将会设置一个服务器，会通过所有的请求，除了静态图像的请求到代理服务器，通过FastCGI协议运行在localhost:9000上。
