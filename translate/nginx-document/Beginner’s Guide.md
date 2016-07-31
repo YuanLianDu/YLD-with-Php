@@ -133,7 +133,7 @@ server {
 ```
 
 
-这已经是一个可以工作的服务器配置文件，它监听的是80端口，可在本地通过http://localhost/访问。
+这已经是一个可以工作的服务器配置文件，它监听的是80端口，可在本地通过`http://localhost/`访问。
 响应带`/images/`的URI路由请求时，服务器将会从`/data/images`目录发送文件。
 例如，响应 `http://localhost/images/example.png`  路由请求，nginx将会发送`/data/images/example.png`
 文件。如果这个文件不存在，nginx将会发出404错误的响应。不带`/images/`的URIs请求将会映射到`/data/www`目录。
@@ -148,7 +148,82 @@ server {
 access.log和error.log文件找到原因。
 ```
 
-
 ## 设置一个简单的代理服务器
+nginx最常用的功能之一就是将其设置为代理服务器，这将意味着服务器接受请求，并将请求传送给代理服务器，
+然后从代理服务器取回响应，并将区徽的响应发送给客户端。
+
+我们将会配置一个基础版本的代理服务器，它可以服务来自本地目录的图片文件请求，并将所有其它请求发送给代理服务器。
+在这个例子中，所有的服务器都被定义为一个单一的nginx实例。
+
+First, define the proxied server by adding one more server block to the nginx’s 
+configuration file with the following contents:
+首先，定义代理服务器通过在nginx的配置文件增加一个额外的server块，以下为添加的内容：
+>
+```
+server {
+    listen 8080;
+    root /data/up1;
+    location / {
+    }
+}
+```
+
+这是一个简单的server块，监听8080端口（此前，listen指令没有被提起是由于已经使用了标准的80端口），并将所有的请求
+映射到本地文件系统的`/data/up1`目录。创建这个目录，并将index.html文件放置其中。注意root指令已经被放置在server环境中。
+当location块被选中服务请求时，root指令就会被使用，当然不包括自己的root指令。
+(Such root directive is used when the location block selected
+for serving a request does not include own root directive.)
+
+接下来，使用上一节服务器配置并修改它，使其变成一个代理服务器配置。在第一个location块中，放置`proxy_pass`指令与协议、
+名称和参数中指定的代理服务器端口。（在我们的例子中，是http://localhost:8080）:
+>
+```
+server {
+    location / {
+        proxy_pass http://localhost:8080;
+    }
+    location /images/ {
+        root /data;
+    }
+}
+```
+
+我们将会修改第二个location块，它目前映射所有带`/images/`前缀的请求到`/data/images`
+目录下的文件，是为了使其符合典型的文件扩展的图像请求。修改的location块应该是这样：
+>
+```
+location ~ \.(gif|jpg|png)$ {
+    root /data/images;
+}
+```
+
+该参数是一个正则表达式，匹配所有.gif,.jpg,.png 结尾的路由。正则表达式应该优于～。相应的请求都会被映射到
+`/data/images`目录。
+
+当nginx选择一个location块服务一个请求时，它首先检查location指令的指定前缀，记住location最长的前缀，
+然后检查正则表达式。如果有一个匹配的正则表达式，nginx会挑选location块，否则它会选择之前的。
+
+因此代理服务器的配置文件应该是这样的:
+>
+```
+server {
+    location / {
+        proxy_pass http://localhost:8080/;
+    }
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+}
+```
+
+此服务器会筛选出以.gif,.jpg,.png 结尾的请求，并将他们映射到`/data/images`目录下(通过添加URI到root指令的参数上)，
+然后通过所有其它请求到代理服务器配置上。
+
+为了应用新的配置文件，发送reload信号到nginx，正如前面的章节所描述的那样。
+
+还有更多的[指令](http://nginx.org/en/docs/http/ngx_http_proxy_module.html)可用于进一步配置代理链接。
+
+## 设置FastCGI代理
+
 
 
