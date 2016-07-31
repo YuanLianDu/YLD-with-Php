@@ -117,7 +117,36 @@ location /images/ {
 ```
 
 它与带`/images/`的请求请求匹配。（location / ，当然也匹配，除非有更短的前缀。）
+(It will be a match for requests starting with /images/ (location / also matches such requests, but has shorter prefix).)
 
-It will be a match for requests starting with /images/ (location / also matches such requests, but has shorter prefix).
+配置文件中server块应是这样的：
+>
+```
+server {
+    location / {
+        root /data/www;
+    }
+
+    location /images/ {
+        root /data;
+    }
+}
+```
+
+这已经是一个可以工作的服务器配置文件，它监听的是80端口，可在本地通过http://localhost/访问。
+响应带`/images/`的URI路由请求时，服务器将会从`/data/images`目录发送文件。
+例如，响应 `http://localhost/images/example.png`  路由请求，nginx将会发送`/data/images/example.png`
+文件。如果这个文件不存在，nginx将会发出404错误的响应。不带`/images/`的URIs请求将会映射到`/data/www`目录。
+例如，为了响应`http://localhost/some/example.html`请求，nginx将会发送`/data/www/some/example.html`文件。
+
+为了应用新的配置，如果还没开启nginx请开启，或者向nginx的主进程发送重新加载的信号，执行:
+>`nginx -s reload`
+
+```
+万一没有像预期的那样工作，您可以尝试在` /usr/local/nginx/logs`或者`/var/log/nginx`目录中的
+access.log和error.log文件找到原因。
+```
+
+## 设置一个简单的代理服务器
 
 
