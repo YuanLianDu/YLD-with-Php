@@ -4,6 +4,7 @@
 ## Translate
 + [ ] Nginx
  - [x] Beginner’s Guide－新手指南
+ - [x] Controlling nginx－控制nginx
 
 ## TODO List
 + [ ] Nginx

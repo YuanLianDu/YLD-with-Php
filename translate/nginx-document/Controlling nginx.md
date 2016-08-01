@@ -89,11 +89,6 @@ PID    PPID USER    %CPU   VSZ WCHAN  COMMAND
 36267 36264 nobody   0.0  1364 kqread nginx: worker process (nginx)
 ```
 
-After that all worker processes (old and new ones) continue to accept requests.
- If the WINCH signal is sent to the first master process, 
- it will send messages to its worker processes, requesting them to shut down gracefully, 
- and they will start to exit:
-
 在这之后所有的工作进程（旧的和新的）都继续接受请求。如果WINCH信号传送到了第一个主进程，它会发送消息到它的工作进程
 ，要求它们正常关机，然后它们将会退出：
 >
