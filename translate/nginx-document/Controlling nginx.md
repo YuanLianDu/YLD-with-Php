@@ -61,7 +61,6 @@ PID    PPID USER    %CPU   VSZ WCHAN  COMMAND
 ```
 PID    PPID USER    %CPU   VSZ WCHAN  COMMAND
 33126     1 root     0.0  1164 pause  nginx: master process /usr/local/nginx/sbin/nginx
-33129 33126 nobody   0.0  1380 kqread nginx: worker process is shutting down (nginx)
 33134 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)
 33135 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)
 33136 33126 nobody   0.0  1368 kqread nginx: worker process (nginx)
