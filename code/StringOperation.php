@@ -7,7 +7,7 @@
  */
 funcChop();
 function funcChop() {
-	$str = "Hello World";
+	$str = "Hello YLD!";
 	echo $str . "<br>";
-	echo chop($str,"World!");
+	echo chop($str,"YLD!");
 }
