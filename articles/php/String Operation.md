@@ -13,7 +13,8 @@
             "\x0B" - 垂直制表符<br/>
             "\r" - 回车<br/>
             " " - 空格
- + 
++ 函数示例：
+ 
  ```
  function funcChop() {
  	$str = "Hello World";
@@ -22,11 +23,11 @@
  }
  ```
  + 输出：
+ 
  ```
  Hello World
  Hello
  ```
- 
     
               
                 
