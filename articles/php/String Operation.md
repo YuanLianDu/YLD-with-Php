@@ -8,8 +8,11 @@
    | ------- |:-------------:|
    |string   | 必需。规定要检查的字符串。|
    |charlist | 	可选。规定从字符串中删除哪些字符。<br/>如果 charlist 参数为空，则移除以下字符：<br/>"\0" - NULL<br/> "\0" - NULL<br/>"\t" - 制表符<br/> "\n" - 换行<br/>"\x0B" - 垂直制表符<br/>"\r" - 回车<br/>" " - 空格|
-                
-               
+ - | Tables        | Are           | Cool  |
+   | ------------- |:-------------:| -----:|
+   | col 3 is      | right-aligned | $1600 |
+   | col 2 is      | centered      |   $12 |
+   | zebra stripes | are neat      |    $1 |
                 
                
                 
