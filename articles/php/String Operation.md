@@ -23,13 +23,16 @@
  	echo chop($str,"World!");
  }
  ```
- + 输出：
+ 
++ 输出：
  
  ```
  Hello World
  Hello
  ```
-    
+
+
+
               
                 
 ### ltrim()
