@@ -73,8 +73,8 @@ PID    PPID USER    %CPU   VSZ WCHAN  COMMAND
 工作进程也会立即打开新的文件并关闭旧的文件。因此，旧文件几乎可立即用于post processing，比如压缩。
 
 ## 平滑升级（Upgrading Executable on the Fly）
-为了平滑升级服务器，新的可执行文件应放置在就文件之前。在USR2信号被发送到主进程之后。
-主进程首先在新文件重命名文件中的ID带着`.oldbin`后缀，比如`/usr/local/nginx/logs/nginx.pid.oldbin`，
+为了平滑升级服务器，新的可执行文件应放置在旧文件之前(the new executable file should be put in place of an old file first.)。
+在USR2信号被发送到主进程之后。主进程首先在新文件重命名文件中的ID带着`.oldbin`后缀，比如`/usr/local/nginx/logs/nginx.pid.oldbin`，
 然后启动新的可执行文件进而轮流启动新的工作进程:
 >
 ```
