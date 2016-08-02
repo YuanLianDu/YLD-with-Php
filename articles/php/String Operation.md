@@ -1,7 +1,8 @@
 # 字符串操作
 
-## 字符串的整理：
-### rtrim(),chop()是此函数的别名，可以理解为小名。
+## 1. 字符串的格式化
+### 1.1 字符串的整理：
+#### rtrim(),chop()是此函数的别名，可以理解为小名。
  + 除字符串右端的空白字符或其他预定义字符
  + chop(string,charlist)
    - string：必需。规定要检查的字符串。
@@ -33,7 +34,7 @@ Hello
 Hello
  ```
             
-### ltrim()
+#### ltrim()
 + 删除字符串开头空格或者预定的其它字符
 + ltrim(string,charlist)
  - string,必需。规定要转换的字符串。
@@ -59,6 +60,7 @@ function funcLtrim() {
 ```
 
 + 输出：
+
 ```
 ~Hello small yellow luo
 small yellow luo
@@ -67,7 +69,7 @@ Hello small yellow luo
 ```
 
 
-###  trim()
+#### trim()
 + 此函数返回字符串 str 去除首尾空白字符后的结果。
 + ltrim(string,charlist)
  - string,必需。规定要转换的字符串。
@@ -94,5 +96,102 @@ function funcTrim() {
 + 输出：
  ```
 string(18) " what's up? no" 
-string(12) "what's up?no"
+string(12) "what's up?no"  //注意字符串的个数变化
  ```
+ 
+### 1.2 格式化字符串以便输出
+#### 1.2.1 nl2br()
++ 在字符串所有新行之前插入 HTML 换行标记.
++ 在字符串 string 所有新行之前插入 '<br />' 或 '<br>'，并返回。
++ string nl2br ( string $string [, bool $is_xhtml = true ] )
+ - string,输入字符串
+ - is_xhtml,是否使用 XHTML 兼容换行符
+ 
++ 函数示例：
+ 
+ ```
+function funcNl2br() {
+	echo nl2br("luo is \n ugly \r\n");
+	$string = "Small\r\nYellow\n\rLuo\nis\rstupid";
+	echo nl2br($string,false);//注意输出换行
+}
+ ```
+ 
++ 输出：
+ ```
+luo is 
+ugly 
+Small
+Yellow
+Luo
+is
+stupid
+ ```
+
+#### 1.2.2 为打印输出而格式化
+#### printf()
++ 输出格式化字符串
++ `printf ( string $format [, mixed $args [, mixed $... ]] )`
++ 函数示例：
+```
+function funcPrintf() {
+	//与java中格式化输出一样
+	printf('I need to pay $%.02lf',1.3568);
+	echo "<br>";
+	$goodevil = array('good', 'evil');
+	//巧用printf
+	printf_array('There is a difference between %s and %s', $goodevil);
+
+}
+function printf_array($format, $arr)
+{
+	//回调printf函数
+	return call_user_func_array('printf', array_merge((array)$format, $arr));
+}
+```
+
++ 输出：
+ ```
+I need to pay $1.36
+There is a difference between good and evil
+ ```
+
+#### sprintf()
++ sprintf() 函数把格式化的字符串写入变量中。
++ sprintf(format,arg1,arg2,arg++)
+ - format,必需。规定字符串以及如何格式化其中的变量。可能的格式值：<br/>
+                %% - 返回一个百分号 % <br/>
+                %b - 二进制数  <br/>
+                %c - ASCII 值对应的字符 <br/>
+                %d - 包含正负号的十进制数（负数、0、正数）<br/>
+                %e - 使用小写的科学计数法（例如 1.2e+2） <br/>
+                %E - 使用大写的科学计数法（例如 1.2E+2） <br/>
+                %u - 不包含正负号的十进制数（大于等于 0） <br/>
+                %f - 浮点数（本地设置）<br/>
+                %F - 浮点数（非本地设置）<br/>
+                %g - 较短的 %e 和 %f  <br/>
+                %G - 较短的 %E 和 %f  <br/>
+                %o - 八进制数  <br/>
+                %s - 字符串   <br/>
+                %x - 十六进制数（小写字母） <br/>
+                %X - 十六进制数（大写字母   <br/>
+ - arg1,必需。规定插到 format 字符串中第一个 % 符号处的参数。
+ - arg2,可选。规定插到 format 字符串中第二个 % 符号处的参数。
+ - arg++,可选。规定插到 format 字符串中第三、四等 % 符号处的参数。
+ 
++ 函数示例：
+```
+function funcSprintf() {
+	$number  = 2;
+	$location = "HangZhou";
+	//与printf相比，只有格式化的功能，没有打印的功能
+	$text = sprintf("I have %u friends in %s",$number,$location);
+	echo $text;
+}
+```
+
++ 输出：
+
+```
+I have 2 friends in HangZhou
+```
