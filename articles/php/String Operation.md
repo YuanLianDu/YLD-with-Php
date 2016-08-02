@@ -336,3 +336,34 @@ function funcStripslashes() {
 ```
 Hi Y'LD
 ```
+
+## 2. 连接、分割字符串
++ explode()
++ implode()
++ join()
++ stroke()
++ substr()
+
+## 3.字符串的比较
+### 3.1 字符串的排序
++ strcmp()
++ strcasecmp()
++ strnatcmp()
+
+### 3.2 测试字符串长度
++ strlen()
+
+## 4.字符串查找和替换
+### 4.1 字符串中查找字符串
++ strstr()
++ strchr()
++ strrchr()
++ stristr()
+
+### 4.2 查找字符串的位置
++ strpos()
++ strrpos()
+
+### 4.3 替换子字符串
++ str_replace()
++ substr_replace()
