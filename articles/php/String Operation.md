@@ -102,7 +102,7 @@ string(12) "what's up?no"  //注意字符串的个数变化
 ### 1.2 格式化字符串以便输出
 #### 1.2.1 nl2br()
 + 在字符串所有新行之前插入 HTML 换行标记.
-+ 在字符串 string 所有新行之前插入 '<br />' 或 '<br>'，并返回。
++ 在字符串 string 所有新行之前插入`<br />` 或 `<br>`，并返回。
 + string nl2br ( string $string [, bool $is_xhtml = true ] )
  - string,输入字符串
  - is_xhtml,是否使用 XHTML 兼容换行符
