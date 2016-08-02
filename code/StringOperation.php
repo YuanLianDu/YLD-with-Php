@@ -57,3 +57,34 @@ function funcSprintf() {
 	$text = sprintf("I have %u friends in %s",$number,$location);
 	echo $text;
 }
+
+function funcStrtoupper() {
+	$str = "i want to become upper";
+	echo $str."<br>";
+	$str = strtoupper($str);
+	echo $str;
+}
+
+function funcStrtolower() {
+	$str = "I WANT TO BECOME LOWER";
+	echo $str."<br>";
+	$str  = strtolower($str);
+	echo $str;
+}
+
+function funcUcfirst() {
+	//upper capitalize first的缩写，maybe
+	$str = "i want to become upper";
+	echo $str."<br>";
+	$str = ucfirst($str);
+	echo $str."<br>";
+// note:只有第一个单词的首字母大写了哦
+}
+
+function funcUcwords() {
+	$str = "yld want to become upper";
+	echo $str."<br>";
+	$str = ucwords($str);
+	echo $str."<br>";
+	//note:每个单词的首字母都变成大写了哦
+}
