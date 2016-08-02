@@ -285,3 +285,54 @@ function funcUcwords() {
 yld want to become upper
 Yld Want To Become Upper
 ```
+
+### 1.4 格式化字符串以便存储
+
+#### addslashes()
++ 使用反斜线引用字符串
++ string addslashes ( string $str )
++ 函数示例：
+
+```
+function funcAddslashes() {
+//add slashes 添加反斜杠
+	$str = 'Hi Y"LD ';
+	$str = addslashes($str);
+	echo $str."<br>";
+	$str_one = "Hi Y'LD";
+	$str_one = addslashes($str_one);
+	echo $str_one."<br>";
+	//var_dump(get_magic_quotes_gpc($str_one));
+	//默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。
+	//所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。
+	//遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。
+	var_dump(get_magic_quotes_gpc());
+}
+```
+
++ 输出：
+
+```
+Hi Y\"LD 
+Hi Y\'LD
+bool(false)
+```
+
+#### stripslashes()
++ 反引用一个引用字符串
++ string stripslashes ( string $str )
++ 函数示例：
+
+```
+function funcStripslashes() {
+//反引用一个引用字符串
+	$str = "Hi Y\'LD";
+	echo stripslashes($str);
+}
+```
+
++ 输出：
+
+```
+Hi Y'LD
+```

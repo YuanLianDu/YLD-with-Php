@@ -88,3 +88,24 @@ function funcUcwords() {
 	echo $str."<br>";
 	//note:每个单词的首字母都变成大写了哦
 }
+
+function funcAddslashes() {
+//add slashes 添加反斜杠
+	$str = 'Hi Y"LD ';
+	$str = addslashes($str);
+	echo $str."<br>";
+	$str_one = "Hi Y'LD";
+	$str_one = addslashes($str_one);
+	echo $str_one."<br>";
+	//var_dump(get_magic_quotes_gpc($str_one));
+	//默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。
+	//所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。
+	//遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。
+	var_dump(get_magic_quotes_gpc());
+}
+
+function funcStripslashes() {
+//反引用一个引用字符串
+	$str = "Hi Y\'LD";
+	echo stripslashes($str);
+}
