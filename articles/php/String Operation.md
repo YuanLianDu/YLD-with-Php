@@ -197,3 +197,91 @@ function funcSprintf() {
 ```
 I have 2 friends in HangZhou
 ```
+
+### 1.3 改变字符串的字母大小写
+#### strtoupper()
++ 将字符串转换为大写
++ string strtoupper ( string $string )
++ 函数示例：
+
+```
+function funcStrtoupper() {
+	$str = "i want to become upper";
+	echo $str."<br>";
+	$str = strtoupper($str);
+	echo $str;
+}
+```
+
++ 输出：
+
+```
+i want to become upper
+I WANT TO BECOME UPPER
+```
+
+#### strtolower()
++ 将字符串转化为小写
++ string strtolower() ( string $string )
++ 函数示例：
+
+```
+function funcStrtolower() {
+	$str = "I WANT TO BECOME LOWER";
+	echo $str."<br>";
+	$str  = strtolower($str);
+	echo $str;
+}
+```
+
++ 输出：
+
+```
+I WANT TO BECOME LOWER
+i want to become lower
+```
+
+#### ucfirst()
++ 将字符串中的第一个单词的首字母转化为大写
++ string ucfirst() ( string $string )
++ 函数示例：
+
+```
+function funcUcfirst() {
+	//upper capitalize first的缩写，maybe
+	$str = "i want to become upper";
+	echo $str."<br>";
+	$str = ucfirst($str);
+	echo $str."<br>";
+// note:只有第一个单词的首字母大写了哦
+}
+```
+
++ 输出：
+
+```
+i want to become upper
+I want to become upper
+```
+
+#### ucwords()
++ 将字符串中的每一个单词的首字母转化为大写
++ string ucwords() ( string $string )
++ 函数示例：
+
+```
+function funcUcwords() {
+	$str = "yld want to become upper";
+	echo $str."<br>";
+	$str = ucwords($str);
+	echo $str."<br>";
+	//note:每个单词的首字母都变成大写了哦
+}
+```
+
++ 输出：
+
+```
+yld want to become upper
+Yld Want To Become Upper
+```
