@@ -151,7 +151,8 @@ function printf_array($format, $arr)
 ```
 
 + 输出：
- ```
+
+```
 I need to pay $1.36
 There is a difference between good and evil
  ```
@@ -180,6 +181,7 @@ There is a difference between good and evil
  - arg++,可选。规定插到 format 字符串中第三、四等 % 符号处的参数。
  
 + 函数示例：
+
 ```
 function funcSprintf() {
 	$number  = 2;
