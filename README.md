@@ -5,7 +5,7 @@
 + [ ] Nginx
  - [x] [Beginner’s Guide－新手指南](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Beginner%E2%80%99s%20Guide.md)
  - [x] [Controlling nginx－控制nginx](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Controlling%20nginx.md)
-
+ - [x] [Connection processing methods－ 连接处理方法](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Connection%20processing%20methods.md)
 ## TODO List
 + [ ] Nginx
   - [ ] Nginx配置详情

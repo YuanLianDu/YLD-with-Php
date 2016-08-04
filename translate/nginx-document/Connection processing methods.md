@@ -1,5 +1,5 @@
 # 连接处理方法
-原文链接：http://nginx.org/en/docs/events.html
+>原文链接：http://nginx.org/en/docs/events.html
 如果有地方翻译的不合理，请多多指教。
 
 nginx支持各种连接处理方法。特别方法的可用性取决于所使用的平台。
