@@ -3,8 +3,8 @@
 
 ## Translate
 + [ ] Nginx
- - [x] Beginner’s Guide－新手指南
- - [x] Controlling nginx－控制nginx
+ - [x] [Beginner’s Guide－新手指南](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Beginner%E2%80%99s%20Guide.md)
+ - [x] [Controlling nginx－控制nginx](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Controlling%20nginx.md)
 
 ## TODO List
 + [ ] Nginx
@@ -13,6 +13,9 @@
 + [ ] Php
   - [ ] Php常用字符串处理函数
   - [ ] Php常用数组函数
+  
++ [ ] MongoDB
+ - [ ] 百万级数据处理
   
   
 ## Resource
@@ -26,3 +29,8 @@
 
 ### Yii2
 + [Yii2官方文档](http://www.yiichina.com/doc/guide/2.0)
+
+
+## My Tracks
++ [segmentfault](https://segmentfault.com/blog/yuan)
++ [开发者头条](http://toutiao.io/subjects/69694)
