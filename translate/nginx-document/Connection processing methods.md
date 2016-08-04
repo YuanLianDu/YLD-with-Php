@@ -1,4 +1,4 @@
-# 连接处理方法
+# ［nginx文档翻译系列］连接处理方法
 >原文链接：http://nginx.org/en/docs/events.html
 如果有地方翻译的不合理，请多多指教。
 
