@@ -1,5 +1,7 @@
 # ［nginx文档翻译系列］新手指南
 原文链接：http://nginx.org/en/docs/beginners_guide.html#conf_structure
+如果有地方翻译的不合理，请多多指教。
+
 + 启动、停止和重启加载配置
 + 配置文件结构
 + 提供静态内容

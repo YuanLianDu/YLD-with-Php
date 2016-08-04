@@ -1,5 +1,6 @@
 # ［nginx文档翻译系列］ 控制nginx
 原文链接：http://nginx.org/en/docs/control.html
+如果有地方翻译的不合理，请多多指教。
 
 + 修改配置文件（Changing Configuration）
 + 轮流日志文件（Rotating Log-files）
