@@ -28,6 +28,8 @@
 ### Php
 + [PHP 最佳实践](http://phpbestpractices.justjavac.com/)
 + [PHP 之道](http://laravel-china.github.io/php-the-right-way/)
++ [Hacking with PHP](http://www.hackingwithphp.com/)
++ [PHP Manual](http://php.net/manual/zh/)
 
 ### Laravel
 + [Laravel学院](http://laravelacademy.org/)
