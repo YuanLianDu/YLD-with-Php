@@ -338,11 +338,74 @@ Hi Y'LD
 ```
 
 ## 2. 连接、分割字符串
-+ explode()
-+ implode()
-+ join()
-+ stroke()
-+ substr()
+#### explode()
++ 使用一个字符串分割另一个字符串
++ array explode ( string $delimiter , string $string [, int $limit ] )
+ - delimiter 边界上的分隔字符。
+ - string 输入的字符串。
+ - limit 如果设置了limit参数并且是正数，则返回的数组包含最多limit个元素，而最后那个元素将包含 string 的剩余部分。
+    * 如果 limit 参数是负数，则返回除了最后的 -limit 个元素外的所有元素。
+    * 如果 limit 是 0，则会被当做 1。
++ 输出：
+
+```
+Array
+(
+    [0] => one
+    [1] => two
+    [2] => 
+    [3] => three
+    [4] => four
+)
+Array
+(
+    [0] => one
+    [1] => two
+    [2] => 
+    [3] => three|four
+)
+Array
+(
+    [0] => one
+    [1] => two
+    [2] => 
+    [3] => three
+)
+```
+
+#### implode()
++ 别名：join()
++ 输出：
+
+```
+one-dimensional array values can be converted to string
+```
+
+#### stroke()
+
++ 输出：
+
+```
+Word=I 
+Word=love
+Word=laravel
+```
+
+#### substr()
+
++ 输出：
+```
+str: string(7) "abcdefg"
+start=1: string(6) "bcdefg"
+start=1 length=-1: string(5) "bcdef"
+start=1 length=0: string(0) ""
+start=1 length=2: string(2) "bc"
+start=3 length=9>count($str): string(4) "defg"
+start=8 bool(false)
+start=-3 : string(3) "efg"
+start=-1 length=-4: string(0) ""
+start=-3 length=2: string(2) "ef"
+```
 
 ## 3.字符串的比较
 ### 3.1 字符串的排序
