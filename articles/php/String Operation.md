@@ -458,14 +458,14 @@ Word=laravel
 function funcSubstr() {
 	$str = 'abcdefg';
 
-	echo 'str: ';var_dump($str);
+    echo 'str: ';var_dump($str);
 	echo 'start=1: ';var_dump(substr($str,1));
 	echo 'start=1 length=-1: ';var_dump(substr($str,1,-1));
 	echo 'start=1 length=0: ';var_dump(substr($str,1,0));
 	echo 'start=1 length=2: ';var_dump(substr($str,1,2));
 	echo 'start=3 length=9>count($str): ';var_dump(substr($str,3,9));
-	echo 'start=8 ';var_dump(substr($str,8));
-	echo 'start=-3 : ';var_dump(substr($str,-3));
+	echo 'start=8: ';var_dump(substr($str,8));
+	echo 'start=-3: ';var_dump(substr($str,-3));
 	echo 'start=-1 length=-4: ';var_dump(substr($str,-1,-4));
 	echo 'start=-3 length=2: ';var_dump(substr($str,-3,2));
 
@@ -480,8 +480,8 @@ start=1 length=-1: string(5) "bcdef"
 start=1 length=0: string(0) ""
 start=1 length=2: string(2) "bc"
 start=3 length=9>count($str): string(4) "defg"
-start=8 bool(false)
-start=-3 : string(3) "efg"
+start=8: bool(false)
+start=-3: string(3) "efg"
 start=-1 length=-4: string(0) ""
 start=-3 length=2: string(2) "ef"
 ```
