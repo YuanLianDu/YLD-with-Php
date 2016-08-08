@@ -1,4 +1,43 @@
 # 字符串操作
++ 字符串的格式化
+ - rtrim(),除字符串右端的空白字符或其他预定义字符
+ - ltrim(),删除字符串开头空格或者预定的其它字符
+ - trim(),此函数返回字符串 str 去除首尾空白字符后的结果
++ 格式化字符串以便输出
+ - nl2br(),在字符串所有新行之前插入 HTML 换行标记
+ - printf(),输出格式化字符串
+ - sprintf(),把格式化的字符串写入变量中
++ 改变字符串的字母大小写
+ - strtoupper(),将字符串转换为大写
+ - strtolower(),将字符串转化为小写
+ - ucfirst(),将字符串中的第一个单词的首字母转化为大写
+ - ucwords(),将字符串中的每一个单词的首字母转化为大写
++ 格式化字符串以便存储
+ - addslashes(),使用反斜线引用字符串
+ - stripslashes(),反引用一个引用字符串
++ 连接、分割字符串
+ - explode(),使用一个字符串分割另一个字符串
+ - implode(),将一个一维数组的值转化为字符串;别名：join()
+ - stroke(),标记分割字符串
+ - substr(),返回字符串的子串
++ 字符串的排序
+ - strcmp()
+ - strcasecmp()
+ - strnatcmp()
++ 测试字符串长度
+ - strlen()
++ 字符串中查找字符串
+ - strstr()
+ - strchr()
+ - strrchr()
+ - stristr()  
++ 查找字符串的位置
+   - strpos()
+   - strrpos()
++ 替换子字符串
+  - str_replace()
+  - substr_replace()
+   
 
 ## 1. 字符串的格式化
 ### 1.1 字符串的整理：
