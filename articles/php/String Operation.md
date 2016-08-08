@@ -346,6 +346,23 @@ Hi Y'LD
  - limit 如果设置了limit参数并且是正数，则返回的数组包含最多limit个元素，而最后那个元素将包含 string 的剩余部分。
     * 如果 limit 参数是负数，则返回除了最后的 -limit 个元素外的所有元素。
     * 如果 limit 是 0，则会被当做 1。
++ 函数示例：
+
+```
+function funcExplode() {
+
+	$str = 'one|two||three|four';
+
+	// 默认输出
+	print_r(explode('|',$str));
+    // 正数的 limit note:three和four成为了同一个字符串
+	print_r(explode('|', $str, 4));
+
+    // 负数的 limit（自 PHP 5.1 起） note:four没有被输出
+	print_r(explode('|', $str, -1));
+}
+```
+
 + 输出：
 
 ```
@@ -374,7 +391,20 @@ Array
 ```
 
 #### implode()
-+ 别名：join()
++ 将一个一维数组的值转化为字符串;别名：join()
++ string implode ( string $glue , array $pieces )
+ - glue 默认为空的字符串
+ - pieces 你想要转换的数组
++ 函数示例：
+
+```
+function funcImplode() {
+	$arr = array('one-dimensional','array','values','can','be','converted','to','string');
+	$arr = implode(' ',$arr);
+	print_r($arr);
+}
+```
+
 + 输出：
 
 ```
@@ -382,6 +412,23 @@ one-dimensional array values can be converted to string
 ```
 
 #### stroke()
++ 标记分割字符串
++ string strtok ( string $str , string $token )
+ - str 被分成若干子字符串的原始字符串
+ - token 分割 str 时使用的分界字符
++ note:此函数可能返回布尔值 FALSE，但也可能返回等同于 FALSE 的非布尔值。应使用===运算符来测试返回值
++ 函数示例：
+
+```
+function funcStrtok() {
+	$str = "I \nlove \tlaravel";
+	$tok = strtok($str,"\n\t");
+	while ($tok !== false) {
+		echo "Word=$tok<br />";
+		$tok = strtok(" \n\t");
+	}
+}
+```
 
 + 输出：
 
@@ -392,6 +439,38 @@ Word=laravel
 ```
 
 #### substr()
++ 返回字符串的子串
++ string substr ( string $string , int $start [, int $length ] )
+ - string 输入字符串。必须至少有一个字符
+ - start
+   * 如果 start>0，返回的字符串将从 string 的 start 位置开始，从 0 开始计算
+   * 如果 start<0，返回的字符串将从 string 结尾处向前数第 start 个字符开始
+   * 如果 string 的长度小于 start，将返回 FALSE
+ - length
+   * 如果length>0，返回的字符串将从 start 处开始最多包括 length 个字符（取决于 string 的长度）。
+   * 如果length<0，那么 string 末尾处的许多字符将会被漏掉（若 start 是负数则从字符串尾部算起）。如果 start 不在这段文本中，那么将返回一个空字符串。
+   * 如果length=0，FALSE 或 NULL 的 length，那么将返回一个空字符串。
+   * 如果没有提供 length，返回的子字符串将从 start 位置开始直到字符串结尾。
+   
++ 函数示例：
+
+```
+function funcSubstr() {
+	$str = 'abcdefg';
+
+	echo 'str: ';var_dump($str);
+	echo 'start=1: ';var_dump(substr($str,1));
+	echo 'start=1 length=-1: ';var_dump(substr($str,1,-1));
+	echo 'start=1 length=0: ';var_dump(substr($str,1,0));
+	echo 'start=1 length=2: ';var_dump(substr($str,1,2));
+	echo 'start=3 length=9>count($str): ';var_dump(substr($str,3,9));
+	echo 'start=8 ';var_dump(substr($str,8));
+	echo 'start=-3 : ';var_dump(substr($str,-3));
+	echo 'start=-1 length=-4: ';var_dump(substr($str,-1,-4));
+	echo 'start=-3 length=2: ';var_dump(substr($str,-3,2));
+
+}
+```
 
 + 输出：
 ```
