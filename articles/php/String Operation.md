@@ -527,9 +527,87 @@ start=-3 length=2: string(2) "ef"
 
 ## 3.字符串的比较
 ### 3.1 字符串的排序
-+ strcmp()
-+ strcasecmp()
-+ strnatcmp()
+#### strcmp()
+ + 二进制安全字符串比较,区分大小写
+ + int strcmp ( string $str1 , string $str2 )
+ + 返回值，如果 str1 小于 str2 返回 < 0； 如果 str1 大于 str2 返回 > 0；如果两者相等，返回 0。
+ + 函数示例：
+ 
+ ｀｀｀
+ function funcStrcmp() {
+ 	var_dump(strcmp('hi','hi'));
+ 	var_dump(strcmp('Hi','hi'));
+ 	var_dump(strcmp('hi','Hi'));
+ }
+ ｀｀｀
+ 
++ 输出：
+
+｀｀｀
+int(0)
+int(-32)
+int(32)
+｀｀｀
+
+#### strcasecmp()
++  二进制安全比较字符串（不区分大小写）
++ int strcmp ( string $str1 , string $str2 )
++ 返回值，如果 str1 小于 str2 返回 < 0； 如果 str1 大于 str2 返回 > 0；如果两者相等，返回 0。
++ 函数示例：
+
+```
+function funcStrcasecmp() {
+	var_dump(strcmp('hi','hi'));
+	var_dump(strcmp('hi','Hi'));
+	var_dump(strcmp('hi','Hh'));
+}
+```
+
++ 输出：
+```
+int(0)
+int(32)
+int(32)
+```
+
+#### strnatcmp()
++ 使用自然排序算法比较字符串
++ int strnatcmp ( string $str1 , string $str2 )
++ 返回值，如果 str1 小于 str2 返回 < 0； 如果 str1 大于 str2 返回 > 0；如果两者相等，返回 0。
++ 函数示例：
+```
+function funcStrnatcmp() {
+	$arr1 = $arr2 = array("img12.png", "img10.png", "img2.png", "img1.png");
+	echo "标准字符串比较\n";
+	usort($arr1, "strcmp");
+	print_r($arr1);
+	echo "\n自然秩序的字符串比较\n";
+	usort($arr2, "strnatcmp");
+	print_r($arr2);
+}
+```
+
++ 输出：
+
+```
+标准字符串比较
+Array
+(
+    [0] => img1.png
+    [1] => img10.png
+    [2] => img12.png
+    [3] => img2.png
+)
+
+自然秩序的字符串比较
+Array
+(
+    [0] => img1.png
+    [1] => img2.png
+    [2] => img10.png
+    [3] => img12.png
+)
+```
 
 ### 3.2 测试字符串长度
 + strlen()
