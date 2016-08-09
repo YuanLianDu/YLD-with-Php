@@ -12,8 +12,8 @@
   - [ ] Nginx配置详情
 
 + [ ] Php
-  - [ ] Php常用字符串处理函数
-  - [ ] Php常用数组函数
+  - [x] [Php常用函数系列之字符串处理](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/String%20Operation.md)
+  - [ ] Php常用函数系列之数组
   - [ ] 正则
   - [ ] 文件
   
@@ -43,3 +43,4 @@
 ## My Tracks
 + [segmentfault](https://segmentfault.com/blog/yuan)
 + [开发者头条](http://toutiao.io/subjects/69694)
++ [掘金](https://gold.xitu.io/user/571dd3a51ea493006efee4a4/article)
