@@ -21,22 +21,22 @@
  - stroke(),标记分割字符串
  - substr(),返回字符串的子串
 + 字符串的排序
- - strcmp()
- - strcasecmp()
- - strnatcmp()
+ - strcmp(),二进制安全字符串比较,区分大小写
+ - strcasecmp(),二进制安全比较字符串（不区分大小写）
+ - strnatcmp(),使用自然排序算法比较字符串
 + 测试字符串长度
- - strlen()
+ - strlen(),返回字符串长度
 + 字符串中查找字符串
- - strstr()
- - strchr()
- - strrchr()
- - stristr()  
+ - strstr(),查找字符串的首次出现,别名：strchr().
+ - strchr(),strstr()的别名.
+ - strrchr(),查找指定字符在字符串中的最后一次出现.
+ - stristr(),strstr() 函数的忽略大小写版本
 + 查找字符串的位置
-   - strpos()
-   - strrpos()
+   - strpos(),查找字符串首次出现的位置
+   - strrpos(),计算指定字符串在目标字符串中最后一次出现的位置
 + 替换子字符串
-  - str_replace()
-  - substr_replace()
+  - str_replace(),搜索目标字符串，并替换字符串.
+  - substr_replace(),确定要替换的字符串位置，替换字符串的子串.
    
 
 ## 1. 字符串的格式化
@@ -610,19 +610,211 @@ Array
 ```
 
 ### 3.2 测试字符串长度
-+ strlen()
+#### strlen()
++ 返回字符串长度
++ int strlen ( string $string )
++ 函数示例：
+
+```
+
+function funcstrlen() {
+	$str = 'how long is my leg';
+	var_dump($str);
+	var_dump(strlen($str));
+}
+```
+
++ 输出:
+
+```
+string(18) "how long is my leg"
+int(18)
+```
 
 ## 4.字符串查找和替换
 ### 4.1 字符串中查找字符串
-+ strstr()
-+ strchr()
-+ strrchr()
-+ stristr()
+#### strstr() 别名：strchr()
++ 查找字符串的首次出现
++ string strstr ( string $haystack , mixed $needle [, bool $before_needle = false ] )
++ 函数示例：
+
+```
+function funcStrstr()
+{
+	$email = 'name@example.com';
+	$domain = strstr($email, '@');
+	var_dump($domain); // 打印 @example.com
+
+	$user = strstr($email, '@', true); // 从 PHP 5.3.0 起
+	var_dump($user); // 打印 name
+}
+```
+
++ 输出：
+
+```
+string(12) "@example.com"
+string(4) "name"
+```
+
+#### stristr()
++ strstr() 函数的忽略大小写版本,用法同上.
+
+#### strrchr()
++ 查找指定字符在字符串中的最后一次出现
++ string strrchr ( string $haystack , mixed $needle )
++ 函数示例：
+
+```
+function funcStrrchr()
+{
+	$path = '/www/public_html/index.html';
+	var_dump(strrchr($path, "/"));
+	$filename = substr(strrchr($path, "/"), 1);
+	var_dump($filename);
+}
+```
+
++ 输出：
+
+```
+string(11) "/index.html"
+string(10) "index.html"
+```
+
 
 ### 4.2 查找字符串的位置
-+ strpos()
-+ strrpos()
+#### strpos()
++ 查找字符串首次出现的位置
++ int strpos ( string $haystack , string $needle [, int $offset = 0 ] )
++ 函数示例：
+
+```
+function funcStrpos()
+{
+	$string = "hello hello hello hello";
+	$find = "e";
+	// e的位置是1、7、13、19
+	var_dump(strpos($string, $find, 1));//从开始数，第1个位置开始查找
+	var_dump(strpos($string, $find, 3));//从开始数，第3个位置开始查找
+	var_dump(strpos($string, $find, 8));//从开始数，第8个位置开始查找
+}
+```
+
++ 输出：
+
+```
+int(1)
+int(7)
+int(13)
+```
+#### strrpos()
++ 计算指定字符串在目标字符串中最后一次出现的位置
++ int strrpos ( string $haystack , string $needle [, int $offset = 0 ] )
++ 函数示例：
+
+```
+function funcStrrpos()
+{
+	$string = "hello hello hello hello";
+	$find = "e";
+	var_dump(strrpos($string, $find));
+	var_dump(strrpos($string, $find, -5));//从末尾数，第5个位置开始查找
+	var_dump(strrpos($string, $find, -23));//
+}
+```
+
++ 输出：
+
+```
+int(19)
+int(13)
+bool(false)
+```
+
 
 ### 4.3 替换子字符串
-+ str_replace()
-+ substr_replace()
+#### str_replace()
++ 搜索目标字符串，并替换字符串
++ mixed str_replace ( mixed $search , mixed $replace , mixed $subject [, int &$count ] )
+ - search,查找的目标值，可以是字符串，也可以是一维数组
+ - replace,search 的替换值，可以是字符串，也可以是一维数组
+ - subject,执行替换的字符串或者数组，可以是字符串，也可以是一维数组
+ - count,只允许是一个variables。是执行替换的次数
+ 
++ 函数示例：
+
+```
+function funcStrReplace()
+{
+	//search replace 都为数组 且replace的值少于search的值
+	// 多余的替换会使用空字符
+	$phrase = "You should eat fruits, vegetables, and fiber every day.";
+	$healthy = array("fruits", "vegetables", "fiber");
+	$yummy = array("pizza", "beer");
+	$newphrase = str_replace($healthy, $yummy, $phrase);
+	var_dump($newphrase);
+
+	//search replace 都为字符串
+	$str = str_replace("ll", "", "good golly miss molly!", $count);
+	var_dump($str);
+	var_dump($count);
+
+	// 输出 F ，因为 A 被 B 替换，B 又被 C 替换，以此类推...
+	// 由于从左到右依次替换，最终 E 被 F 替换
+	$search = array('A', 'B', 'C', 'D', 'E');
+	$replace = array('B', 'C', 'D', 'E', 'F');
+	$subject = 'A';
+	var_dump(str_replace($search, $replace, $subject));
+
+	// 输出: apearpearle pear
+	// 由于上面提到的原因
+	$letters = array('a', 'p');
+	$fruit = array('apple', 'pear');
+	$text = 'a p';
+	$output = str_replace($letters, $fruit, $text);
+	var_dump($output);
+
+}
+```
+
++ 输出：
+
+```
+string(43) "You should eat pizza, beer, and  every day."
+string(18) "good goy miss moy!"
+int(2)
+string(1) "F"
+string(16) "apearpearle pear"
+```
+
+#### substr_replace()
++ 确定要替换的字符串位置，替换字符串的子串
++ mixed substr_replace ( mixed $string , mixed $replacement , mixed $start [, mixed $length ] )
+ - string,输入的字符串
+ - replacement,替换字符串
+ - start,字符串开始位置
+ - length,
+  * 正数，表示 string 中被替换的子字符串的长度
+  * 负数，它表示待替换的子字符串结尾处距离 string 末端的字符个数
+
++ 函数示例：
+
+```
+function funcSubstrReplace()
+{
+	$str = "Hello,YLD.Would you like eat something?";
+    $replace = "Hi";
+    var_dump(substr_replace($str,$replace,0));
+    var_dump(substr_replace($str,$replace,0,5));
+    var_dump(substr_replace($str,$replace,0,-7));
+}
+```
+
++ 输出:
+
+```
+string(2) "Hi"
+string(36) "Hi,YLD.Would you like eat something?"
+string(9) "Hiething?"
+```
