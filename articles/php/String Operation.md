@@ -76,7 +76,7 @@ Hello
 Hello
  ```
             
-#### ltrim()
+##### ltrim()
 + 删除字符串开头空格或者预定的其它字符
 + ltrim(string,charlist)
  - string,必需。规定要转换的字符串。
@@ -142,7 +142,7 @@ string(12) "what's up?no"  //注意字符串的个数变化
  ```
  
 ### 1.2 格式化字符串以便输出
-#### 1.2.1 nl2br()
+### 1.2.1 nl2br()
 + 在字符串所有新行之前插入 HTML 换行标记.
 + 在字符串 string 所有新行之前插入`<br />` 或 `<br>`，并返回。
 + string nl2br ( string $string [, bool $is_xhtml = true ] )
@@ -170,7 +170,7 @@ is
 stupid
  ```
 
-#### 1.2.2 为打印输出而格式化
+### 1.2.2 为打印输出而格式化
 #### printf()
 + 输出格式化字符串
 + `printf ( string $format [, mixed $args [, mixed $... ]] )`
@@ -240,6 +240,7 @@ function funcSprintf() {
 I have 2 friends in HangZhou
 ```
 + note：如果想要`1.2`输出`1.20`，可采用此函数。
+
 ### 1.3 改变字符串的字母大小写
 #### strtoupper()
 + 将字符串转换为大写
