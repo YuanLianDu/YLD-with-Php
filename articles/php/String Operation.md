@@ -1,4 +1,7 @@
 # Php常用函数系列之字符串处理
+
+[代码文件](https://github.com/YuanLianDu/YLD-with-Php/blob/master/code/StringOperation.php)
+
 + 字符串的格式化
  - rtrim(),除字符串右端的空白字符或其他预定义字符
  - ltrim(),删除字符串开头空格或者预定的其它字符
@@ -236,7 +239,7 @@ function funcSprintf() {
 ```
 I have 2 friends in HangZhou
 ```
-
++ note：如果想要`1.2`输出`1.20`，可采用此函数。
 ### 1.3 改变字符串的字母大小写
 #### strtoupper()
 + 将字符串转换为大写
