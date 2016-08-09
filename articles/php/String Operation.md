@@ -537,21 +537,21 @@ start=-3 length=2: string(2) "ef"
  + 返回值，如果 str1 小于 str2 返回 < 0； 如果 str1 大于 str2 返回 > 0；如果两者相等，返回 0。
  + 函数示例：
  
- ｀｀｀
+```
  function funcStrcmp() {
  	var_dump(strcmp('hi','hi'));
  	var_dump(strcmp('Hi','hi'));
  	var_dump(strcmp('hi','Hi'));
  }
- ｀｀｀
+```
  
 + 输出：
 
-｀｀｀
+```
 int(0)
 int(-32)
 int(32)
-｀｀｀
+```
 
 #### strcasecmp()
 +  二进制安全比较字符串（不区分大小写）
