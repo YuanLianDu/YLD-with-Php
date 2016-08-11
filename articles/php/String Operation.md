@@ -1,6 +1,6 @@
 # Php常用函数系列之字符串处理
 
-[代码文件](https://github.com/YuanLianDu/YLD-with-Php/blob/master/code/StringOperation.php)
+[函数示例源码](https://github.com/YuanLianDu/YLD-with-Php/blob/master/code/StringOperation.php)
 
 + 字符串的格式化
  - rtrim(),除字符串右端的空白字符或其他预定义字符

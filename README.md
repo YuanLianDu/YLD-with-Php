@@ -7,6 +7,8 @@
  - [x] [Controlling nginx－控制nginx](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Controlling%20nginx.md)
  - [x] [Connection processing methods－ 连接处理方法](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Connection%20processing%20methods.md)
 
++ [ ] [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+
 ## TODO List
 + [ ] Nginx
   - [ ] Nginx配置详情
