@@ -103,7 +103,7 @@ cosnt REMIND_WECHAT = 4;//微信公众号提醒 2的2次方 转化为二进制�
 
 ```
 $option = $GET['option'];//提醒操作,由前端传来的值
-$type = $GET['sms'];//提醒方式，由前端传来的值
+$type = $GET['type'];//提醒方式，由前端传来的值
 
 $remind = Remind::model()->find(1);//根据条件，在数据库中找到的一条记录
 
