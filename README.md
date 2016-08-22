@@ -1,6 +1,8 @@
 # YLD-with-Php
 >深入学习php
 
+## Finished
+[&运算符的巧妙应用](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/%26_operator.md)
 ## Translate
 + [ ] Nginx
  - [x] [Beginner’s Guide－新手指南](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Beginner%E2%80%99s%20Guide.md)
