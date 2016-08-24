@@ -3,6 +3,8 @@
 
 ## Finished
 [&运算符的巧妙应用](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/%26_operator.md)
+[细说PHP-fpm－半成品](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/php-fpm.md)
+
 ## Translate
 + [ ] Nginx
  - [x] [Beginner’s Guide－新手指南](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Beginner%E2%80%99s%20Guide.md)

@@ -45,33 +45,45 @@
 + FastCGI与语言无关
 + FastCGI应用在进程中，独立于核心网络服务器，提供了一个比API环境更安全的环境。 APIs的代码和web服务器的应用的核心是
 紧紧关联的。这也就意味着在API应用程序的错误可能会损坏其它应用程序或核心服务器。恶意API应用程序代码甚至可以窃取另一个应用程序或核心服务器密钥。
-+ 
++ FastCGI技术摸钱支持PHP,C/C++, Java language, Perl, Tcl, Python, SmallTalk, Ruby etc.. 它在Apache, ISS, Lighttpd和其他流行的
+服务器中的相关模块都是可以使用的。FastCGI不依赖于任何服务器体系结构，所以即使服务器在技术上改变了，FastCGI还是稳定的
 
+**FastCGI的工作原理**
 
++ Web Server 启动时载入FastCGI进程管理器 (IIS ISAPI 或Apache Module)
++ FastCGI进程管理器首先初始化自己，启动一批CGI解释器进程（可见多个php-cgi），然后等待来自Web Server的连接。
++ 当Web Server中的一个客户端请求达到时， FastCGI进程管理器会选择并连接一个CGI解释器。Web server的CGI环境变量和标准输入会被送达FastCGI进程的php-cgi。
++ FastCGI子进程从同一连接完成返还给Web Server的标准输出和错误信息。当请求进程完成后，FastCGI进程会关闭此连接。FastCGI会等待并出来来自FastCGI进程管理器（运行在Web Server中的）的下一个连接。
+在CGI模式，php-cgi然后会退出。
 
-The characteristics of FastCGI
-FastCGI is independent of language.
-The application of FastCGI in the process, independent of the core web server, provides a more secure than API environment. The code APIs and the core of the application of the web server are linked together, this means that in an application error in API may damage the other applications or the core server. Malicious API application code can even steal another application or the core server key.
-FastCGI technical support at present: C/C++, Java language, Perl, Tcl, Python, SmallTalk, Ruby etc.. The relevant module in Apache, ISS, Lighttpd and other popular server is available.
-FastCGI does not depend on any Web server architecture, so even if the server changes in technology, FastCGI is still stable.
-The working principle of FastCGI
-Web Server boot loader FastCGI Process Manager (IIS ISAPI or Apache Module)
-FastCGI process manager initializes itself, start a number of CGI interpreter process (visible multiple php-cgi) and waits for a connection from Web Server.
-When a client request arrives at the Web Server, FastCGI process manager selection and connected to a CGI interpreter. Web server CGI environment variable and the standard input is sent to the FastCGI process php-cgi.
-FastCGI child process finishes the standard output and error information back to the Web Server from the same connection. When the FastCGI process is close the connection when the request processing is completed, will be the. FastCGI sub process then waits and processing from FastCGI Process Manager (running on Web Server in the next connection). In CGI mode, php-cgi then exit.
-In those cases, you can imagine how slow CGI usually. Each Web request PHP must be re parsing php.ini, reload all extensions and initialize the data structure. The use of FastCGI, all of these are only in the process starts when a. An additional benefit is, persistent database connection (Persistent database connection) can work.
-The deficiency of FastCGI
-Because of multi process, so the ratio of CGI multi thread consumes more server memory, the PHP-CGI interpreter per process consumes 7 to 25000000000000 memory, multiply this number by 50 or 100 is a great amount of memory.
-Nginx 0.8.46+PHP 5.2.14(FastCGI)The server in 30000 concurrent connections, 10 Nginx processes open consumption 150M memory (15M*10=150M), 64 php-cgi processes open consumption 1280M memory (20M*64=1280M), Add memory consumes system, Total consumption of less than 2GB memory. If the server memory., Can only open the 25 php-cgi process, So php-cgi consumption of total memory 500M. 
-The above data from the Nginx 0.8.x + PHP 5.2.13 (FastCGI) to build more than ten times the Apache Web server
+**FastCGI的不足**
+因为是多进程，所以比CGI多线程消耗更多的服务器内存，PHP-CGI解释器每进程消耗7至25兆内存，将这个数字乘以50或100就是很大的内存数。
+Nginx 0.8.46+PHP 5.2.14(FastCGI)服务器在3万并发连接下，开启的10个Nginx进程消耗150M内存（15M*10=150M），开启的64个php-cgi进程消耗1280M内存（20M*64=1280M），加上系统自身消耗的内存，总共消耗不到2GB内存。
+如果服务器内存较小，完全可以只开启25个php-cgi进程，这样php-cgi消耗的总内存数才500M。
+[上面的数据摘自Nginx 0.8.x + PHP 5.2.13(FastCGI)搭建胜过Apache十倍的Web服务器(第6版)](http://zyan.cc/nginx_php_v6/)
 
+**PHP-CGI**:　PHP-CGI是PHP自带的FastCGI管理器。
 
+**PHP-CGI的不足**
 
-php-fpm
-php-cgi
-2、如何使用？
-3、为什么使用它？
-4、如何优化？
++ php-cgi变更php.ini配置后需重启php-cgi才能让新的php-ini生效，不可以平滑重启
++ 直接杀死php-cgi进程,php就不能运行了。(PHP-FPM和Spawn-FCGI就没有这个问题,守护进程会平滑从新生成新的子进程。）
+
+**php-fpm**
+
++ PHP-FPM是一个PHP FastCGI管理器，是只用于PHP的,可以在 http://php-fpm.org/download下载得到.
++ PHP-FPM其实是PHP源代码的一个补丁，旨在将FastCGI进程管理整合进PHP包中。必须将它patch到你的PHP源代码中，在编译安装PHP后才可以使用。
++ 现在我们可以在最新的PHP 5.3.2的源码树里下载得到直接整合了PHP-FPM的分支，据说下个版本会融合进PHP的主分支去。相对Spawn-FCGI，PHP-FPM在CPU和内存方面的控制都更胜一筹，而且前者很容易崩溃，必须用crontab进行监控，而PHP-FPM则没有这种烦恼。
+PHP5.3.3已经集成php-fpm了，不再是第三方的包了。PHP-FPM提供了更好的PHP进程管理方式，可以有效控制内存和进程、可以平滑重载PHP配置，比spawn-fcgi具有更多有点，所以被PHP官方收录了。在./configure的时候带 –enable-fpm参数即可开启PHP-FPM。
+
+本文后半部分主要参考这片文章：
+
++ [中文版：什么是CGI、FastCGI、PHP-CGI、PHP-FPM、Spawn-FCGI？](http://www.mike.org.cn/articles/what-is-cgi-fastcgi-php-fpm-spawn-fcgi/)
++ [英文版：PHP CGI, FastCGI, PHP-CGI and PHP-FPM](http://www.programering.com/a/MDOwADMwATA.html)
+
+后续系列有时间会持续更新，[大家可以在这里分享关于这个主题的相关文章，供大家一起学习，有需要整理的地方，我也会整理出来](https://github.com/YuanLianDu/YLD-with-Php/issues/3)
+
+参考文章列表：
 
 + [深入理解PHP之：Nginx 与 FPM 的工作机制](https://zhuanlan.zhihu.com/p/20694204?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 + [高流量站点NGINX与PHP-fpm配置优化(译)](http://blog.xiayf.cn/2014/05/03/optimizing-nginx-and-php-fpm-for-high-traffic-sites/)
