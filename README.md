@@ -4,6 +4,8 @@
 ## Finished
 
 + [&运算符的巧妙应用](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/%26_operator.md)
+
+## Record
 + [细说PHP-fpm－半成品](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/php-fpm.md)
 
 ## Translate
@@ -22,6 +24,7 @@
 + [ ] Php
   - [x] [Php常用函数系列之字符串处理](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/String%20Operation.md)
   - [ ] Php常用函数系列之数组
+  - [ ] PHP时间处理相关函数及开发实战技巧
   - [ ] 正则
   - [ ] 文件
   
