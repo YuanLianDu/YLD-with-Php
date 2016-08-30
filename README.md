@@ -15,6 +15,9 @@
  - [x] [Connection processing methods－ 连接处理方法](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Connection%20processing%20methods.md)
  - [x] [Setting up hashes－ 设置散列](https://github.com/YuanLianDu/YLD-with-Php/blob/master/translate/nginx-document/Setting%20up%20hashes.md)
 
++ [ ] MySQL
+ - [x] [Chapter 16 Alternative Storage Engines-存储引擎的选择](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/mysql/engine.md)
+
 + [ ] [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
 
 ## TODO List
@@ -23,6 +26,7 @@
 
 + [ ] Php
   - [x] [Php常用函数系列之字符串处理](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/String%20Operation.md)
+  - [x] [PHP面向对象编程]()
   - [ ] Php常用函数系列之数组
   - [ ] PHP时间处理相关函数及开发实战技巧
   - [ ] 正则
