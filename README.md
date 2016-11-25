@@ -24,6 +24,7 @@
 
 + [ ] [Redis入门指南（第2版－李骅著）](https://github.com/YuanLianDu/YLD-with-Php/blob/master/note/redis/learning-note.md)
 + [ ] [大型网站技术架构:核心原理与案例分析(李智慧著)](https://github.com/YuanLianDu/YLD-with-Php/blob/master/note/LargeSiteArchitecture/learning-note.md)
++ [ ] [php之道](https://github.com/YuanLianDu/YLD-with-Php/blob/master/note/phpRightWay/learning-note.md)
 
 ## TODO List
 + [ ] Nginx
