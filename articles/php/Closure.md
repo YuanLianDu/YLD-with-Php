@@ -124,10 +124,10 @@ $echostr();
 在闭包中可以使用:
 
 ## Function Handling 函数
-`call_user_func(Closure $callback,mixed $parameter)`,调用匿名函数。
-`func_num_args()`:函数，返回传递给函数的参数个数；
-`func_get_arg($num)`:函数，返回参数列表的某一项，$num从0开始；
-`func_get_args()`:函数，返回一个数组，其中每个元素都是目前用户自定义函数的参数列表的相应元素的副本。；
++ `call_user_func(Closure $callback,mixed $parameter)`,调用匿名函数。
++ `func_num_args()`:函数，返回传递给函数的参数个数；
++ `func_get_arg($num)`:函数，返回参数列表的某一项，$num从0开始；
++ `func_get_args()`:函数，返回一个数组，其中每个元素都是目前用户自定义函数的参数列表的相应元素的副本。；
 
 
 持续补充ing
