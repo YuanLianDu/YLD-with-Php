@@ -1,5 +1,6 @@
 # Exception
 
+> 目的：学习笔记，会根据使用经验，持续补充ing
 
 ## 异常基本函数
 
@@ -18,11 +19,100 @@
 
 ## 异常的子类
 
-## 异常配置
+我们继承`Exception`这个基类，创建自己的异常类。
 
-## 异常错误处理函数
+创建不同的异常类，是为了在`catch`的时候，可以捕捉不同的异常，并根据不同的异常类型做不同的处理。
+
+至于创建自己异常类的标准，可以参考 **SPL 提供一系列标准异常**
+
+**示例代码**
+
+```
+    try{
+	       echo testParams('ha');
+	    }catch (StringException $stringException) {
+		   echo "lengthException:".$stringException->getMessage();
+	    }catch (lengthException $lengthException) {
+		    echo "lengthException:".$lengthException->getMessage();
+	  }
+	
+	function testParams($param) {
+    
+    		if(!is_string($param)) {
+    			throw new StringException("is not string");
+    		}
+    
+    		if(strlen($param) < 5) {
+    			throw new LengthException('length is not enough');
+    		}
+    		return $param;
+    	}
+    	
+    	class LengthException extends Exception
+        {
+        
+        }
+        
+        class StringException extends Exception
+        {
+        
+        }
+```
+
+## 错误和异常配置
+
+在开发环境中，我们需要显示所有可能的错误，所以在`php.ini`中的配置
+
+```
+display_errors = On #String 该选项设置是否将错误信息作为输出的一部分显示到屏幕，或者对用户隐藏而不显示
+display_startup_errors = On #boolean 即使 display_errors 设置为开启, PHP 启动过程中的错误信息也不会被显示。强烈建议除了调试目的以外，将 display_startup_errors 设置为关闭。
+error_reporting = -1 #boolean 即使 display_errors 设置为开启, PHP 启动过程中的错误信息也不会被显示。强烈建议除了调试目的以外，将 display_startup_errors 设置为关闭。
+log_errors = On #boolean 设置是否将脚本运行的错误信息记录到服务器错误日志或者error_log之中。注意，这是与服务器相关的特定配置项。
+```
 
 
+生产环境中，我们要隐藏错误信息
+
+```
+display_errors = Off
+display_startup_errors = Off
+error_reporting = E_ALL
+log_errors = On
+```
+
+[详细信息看手册](http://php.net/manual/zh/errorfunc.configuration.php)
+
+
+## SPL 提供一系列标准异常
+
++ `BadFunctionCallException` [如果回调引用了未定义的函数，或者如果有一些参数丢失](http://php.net/manual/zh/class.badfunctioncallexception.php)
++ `BadMethodCallException` [当一个回调方法是一个未定义的方法或缺失一些参数时会抛出该异常](http://php.net/manual/zh/class.badmethodcallexception.php)
++ `DomainException` [如果值不符合定义的有效数据域，则抛出异常](http://php.net/manual/zh/class.domainexception.php)
++ `InvalidArgumentException` [如果参数不是预期类型，则抛出异常](http://php.net/manual/zh/class.invalidargumentexception.php)
++ `LengthException` [如果长度无效，则抛出异常](http://php.net/manual/zh/class.lengthexception.php)
++ `LogicException` [表示程序逻辑中的错误的异常。这种异常应该直接导致你的代码中的修复](http://php.net/manual/zh/class.logicexception.php)
++ `OutOfBoundsException` [数组：如果值不是有效的键，则抛出异常。这表示在编译时无法检测的错误](http://php.net/manual/zh/class.outofboundsexception.php)
++ `OutOfRangeException` [请求非法索引时抛出异常。这表示应在编译时检测到的错误](http://php.net/manual/zh/class.outofrangeexception.php)
++ `OverflowException` [将元素添加到完整容器时抛出异常](http://php.net/manual/zh/class.overflowexception.php)
++ `RangeException` [在程序执行期间抛出异常以指示范围错误](http://php.net/manual/zh/class.rangeexception.php)
++ `RuntimeException` [如果只能在运行时找到的错误发生，则抛出异常](http://php.net/manual/zh/class.runtimeexception.php)
++ `UnderflowException` [对空容器执行无效操作（例如删除元素）时抛出异常](http://php.net/manual/zh/class.underflowexception.php)
++ `UnexpectedValueException` [如果值与一组值不匹配，则抛出异常](http://php.net/manual/zh/class.unexpectedvalueexception.php)
+
+
+## 异常和错误处理函数
+
++ set_exception_handler
++ restore_exception_handler
+
+## 异常和错误的区别？
+
+异常按理说是应用程序上的逻辑异常，可以通过合理的手段解决；
+
+错误一般指语法错误、逻辑错误等
+
+
+持续补充ing
 
 参考：
 
