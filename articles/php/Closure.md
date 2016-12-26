@@ -76,9 +76,9 @@ function echoStr(){
 	$invokeOutsideParam = function () use($num) {
 		echo $num;
 		$num ++;
-	};
+	};//使用use 调用匿名函数的外部参数
 
-	$invokeOutsideParam();
+	$invokeOutsideParam();//执行匿名函数
 	echo $num;
 }
 输出： 11
@@ -97,7 +97,7 @@ function echoStr(){
 		$num ++;
 	};
 
-	return $invokeOutsideParam;
+	return $invokeOutsideParam;//返回匿名函数
 }
 
 $echostr = echoStr();

@@ -34,11 +34,11 @@
   - [x] [PHP常用函数系列之字符串处理](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/String%20Operation.md)
   - [x] [PHP面向对象编程](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/Object-Oriented%20Programming.md)
   - [ ] PHP常用数组函数
-  - [ ] PHP时间处理相关函数及开发实战技巧
+  - [x] [PHP时间处理相关函数及开发实战技巧](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/time.md)
   - [ ] 正则
   - [ ] 文件
   - [x] [PHP 预定义接口－－closure](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/Closure.md)
-  
+  - [x] [Exception 学习笔记](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/Exception.md)
 + [ ] MongoDB
  - [ ] 百万级数据处理
   
