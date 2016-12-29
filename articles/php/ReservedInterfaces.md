@@ -25,7 +25,6 @@
 ```
 Iterator extends Traversable {
     public function current();// 返回当前元素
-    public function current();// 返回当前键
     public function next(); // 移动到下一个元素
     public function key();// 返回当前键
     public function valid(); //检查当前位置是否有效
@@ -134,7 +133,7 @@ string(24) "IteratorInterface::valid"
 源码：
 
 ```
-IteratorAggtegate extends Traversable {
+IteratorAggregate extends Traversable {
 
     public function getIterator();	//获取一个外部迭代器，
 }
