@@ -1,9 +1,9 @@
-自动加载：
+# 自动加载与命名空间：
 
 
 ## __autoload，加载未定义的类
 
-全局函数，在new一个对象时，会自动调用。`__autoload`的目的是，找到目标文件并加载；
+1、全局函数，在new一个对象时，会自动调用。`__autoload`的目的是，找到目标文件并加载；
 
 autoload.php 文件
 
@@ -33,7 +33,7 @@ Fatal error:  Class 'Demo' not found
 + 确定类文件所在的磁盘路径；
 + 将所需要的类从磁盘文件路径中加载到项目里；
 
-根据上面三步，我们可以将代码改一下：
+2、根据上面三步，我们可以将代码改一下：
 
 autoload.php文件
 
@@ -65,7 +65,7 @@ class Demo
 结果为：`create demo instance success`
 这说明，`__autoload`函数找到类文件并正确加载了文件。
 
-**但是，这里有一个问题。注意，我们的`Demo.php`文件同`autoload.php`文件在同一层级。为了代码好管理，我们肯定有与`autoload.php`不同层级的代码文件。**
+3、**但是，这里有一个问题。注意，我们的`Demo.php`文件同`autoload.php`文件在同一层级。为了代码好管理，我们肯定有与`autoload.php`不同层级的代码文件。**
 
 我们可以用一个数组来存储各种路径，我们继续修改上面的代码：
 
@@ -108,7 +108,7 @@ $test = new Test();
 
 返回结果，`create a test in Demo/Test.php`
 
-不同层级的问题我们也解决了～
+4、不同层级的问题我们也解决了～
 
 **可是还有一个问题，如果目录`Demo`下也有一个类叫`Demo`，会是什么样的结果？？我们来测试一下**
 
@@ -126,7 +126,7 @@ class Demo {
 
 返回结果`PHP Fatal error:  Cannot redeclare class Demo`;
 
-**现在报错，提示没有办法分辨是那一个class Demo了，现在怎么办呢？**
+4、**现在报错，提示没有办法分辨是那一个class Demo了，现在怎么办呢？**
 
 **我们可以使用命名空间**[具体使用方法详见PHP手册](http://php.net/manual/zh/language.namespaces.rationale.php)
 
@@ -175,7 +175,7 @@ I'm class Demo In the Demo directory
 
 我们成功的解决了，不同层级存在相同类名的问题～
 
-**但是，发现了一个问题～～**
+5、**但是，发现了一个问题～～**
 
 如果`Demo/Demo.php`的命名空间是`namespace App\Demo;`
 修改`autoload.php`的`use Demo\Demo as DemoBother;`为`use App\Demo\Demo as DemoBother;`
@@ -201,7 +201,7 @@ Demo
 直觉告诉我，可能跟`use Demo\Demo as DemoBother;`use别名有关系，但是具体情况还是未知？？？？等我找到答案，再在这里解答～～
 如果有人知道请告诉我一下～～～
 
-**在PHP手册中，提醒我们**
+6、**在PHP手册中，提醒我们**
 > [spl_autoload_register()](http://php.net/manual/zh/function.spl-autoload-register.php) 提供了一种更加灵活的方式来实现类的自动加载。因此，不再建议使用 __autoload() 函数，在以后的版本中它可能被弃用。
 
 
@@ -234,7 +234,7 @@ spl_autoload_register('autoload');
 ```
 
 但是，还是有一个问题，只能在`autoload.php`文件里，use其他类，然后创建对象；否则，会报错`Fatal error:  Class not found`。
-如何，不用**每次**都在文件先写一个自动加载函数，然后注册，然后才能创建其他类～～
+如何，不用**每次**都在文件先写一个自动加载函数，然后注册，然后才能创建其他类～～？？？
 
 
 

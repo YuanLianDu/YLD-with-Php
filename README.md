@@ -40,6 +40,7 @@
   - [x] [PHP 预定义接口－－closure](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/Closure.md)
   - [x] [Exception 学习笔记](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/Exception.md)
   - [x] [预定义接口 学习笔记](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/ReservedInterfaces.md)
+  - [x] [自动加载与命名空间](https://github.com/YuanLianDu/YLD-with-Php/blob/master/articles/php/autoload.md)
 
 + [ ] MongoDB
  - [ ] 百万级数据处理
