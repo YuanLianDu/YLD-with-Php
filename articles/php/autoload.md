@@ -3,7 +3,7 @@
 
 ## __autoload，加载未定义的类
 
-1、全局函数，在new一个对象时，会自动调用。`__autoload`的目的是，找到目标文件并加载；
+1、全局函数，在new一个对象时，会自动调用。`__autoload`的目的是，找到目标文件并加载；这样，我们就不需要手动require那么多文件了～
 
 autoload.php 文件
 
@@ -126,7 +126,7 @@ class Demo {
 
 返回结果`PHP Fatal error:  Cannot redeclare class Demo`;
 
-4、**现在报错，提示没有办法分辨是那一个class Demo了，现在怎么办呢？**
+5、**现在报错，提示没有办法分辨是那一个class Demo了，现在怎么办呢？**
 
 **我们可以使用命名空间**[具体使用方法详见PHP手册](http://php.net/manual/zh/language.namespaces.rationale.php)
 
@@ -140,13 +140,16 @@ use Demo\Demo as DemoBother;
 function __autoload($className) {
 	$dirs = array(
 		__DIR__,
-		__DIR__ . '/Demo/',
+		__DIR__ . '/Demo/',//将存在的路径加入
 	);
 
+     echo $className."\n";//打印，会发现，只打印出了一个$className
+     
 	foreach($dirs as $dir) {
 		$file = $dir.'/'.str_replace('\\', '/', $className). '.php';
 
 		if (file_exists($file)) {
+		    echo $file."\n";
 			require $file;
 		}
 	}
@@ -169,44 +172,23 @@ class Demo {
 返回结果：
 
 ```
+Demo
+/Users/yuan/PhpstormProjects/HeadFirst/Demo.php
+/Users/yuan/PhpstormProjects/HeadFirst/Demo//Demo.php
 create demo instance success 
 I'm class Demo In the Demo directory
 ```
 
 我们成功的解决了，不同层级存在相同类名的问题～
 
-5、**但是，发现了一个问题～～**
+6、**如果使用了use别名，className只传入了一次，便找到了两个Demo.php**
 
-如果`Demo/Demo.php`的命名空间是`namespace App\Demo;`
-修改`autoload.php`的`use Demo\Demo as DemoBother;`为`use App\Demo\Demo as DemoBother;`
-
-我们打印出传入`__autoload`函数的参数`$className`,执行以下代码：
-
-```
-$demo = new Demo();
-$demoBother = new DemoBother();
-```
-
-打印结果为：
-
-```
-Demo
-Demo
-```
-
-如果只执行`$demoBother = new DemoBother();`
-打印结果：`App\Demo\Demo`
-
-`DemoBother`类，两次传入的`className`不一样，为什么呢？？？？
-直觉告诉我，可能跟`use Demo\Demo as DemoBother;`use别名有关系，但是具体情况还是未知？？？？等我找到答案，再在这里解答～～
-如果有人知道请告诉我一下～～～
-
-6、**在PHP手册中，提醒我们**
+7、**在PHP手册中，提醒我们**
 > [spl_autoload_register()](http://php.net/manual/zh/function.spl-autoload-register.php) 提供了一种更加灵活的方式来实现类的自动加载。因此，不再建议使用 __autoload() 函数，在以后的版本中它可能被弃用。
 
 
-我们可以用`spl_autoload_register()`，注册不同的自定义的自动加载函数。
-所以，我们家`autoload.php`代码修改如下：
+我们可以用`spl_autoload_register()`，注册不同的自定义的自动加载函数。它不仅很灵活，效率也更高。
+所以，我们将`autoload.php`代码修改如下：
 
 ```
 <?php
@@ -214,8 +196,7 @@ function autoload($class) {
 	static $map = array();
 	$dirs = array(
 		__DIR__,
-		__DIR__.'/Lib/',
-		__DIR__.'/classes/',
+		__DIR__.'/Demo/',
 	);
 
 	if(!isset($map[$class])) {
@@ -232,6 +213,8 @@ function autoload($class) {
 //注册
 spl_autoload_register('autoload');
 ```
+
+**注：每一个添加的autoload函数，都是被塞到一个autoload处理的队列里，就像排队一样。当new一个类的时候，它会按照塞进去的顺序，及排队的顺序，先到先得，直到它找到要new的类，就会自动停止。**
 
 但是，还是有一个问题，只能在`autoload.php`文件里，use其他类，然后创建对象；否则，会报错`Fatal error:  Class not found`。
 如何，不用**每次**都在文件先写一个自动加载函数，然后注册，然后才能创建其他类～～？？？
