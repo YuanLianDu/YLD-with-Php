@@ -13,7 +13,8 @@ array_shift($parts);
 返回 `a`
 
 **不可以这么写**`array_shift([0=>'a'])`
-否则报错信息是**Only variables can be passed by reference**
+
+否则报错信息是`**Only variables can be passed by reference**`
 
 
 ## array_reverse
@@ -24,4 +25,6 @@ array_shift($parts);
 
 递归处理数组的每个元素
 
-**可以与call_user_func()配合，可以实现装饰模式的自动化**
+**可以与`call_user_func()`配合，可以实现装饰模式的自动化**
+否则报错信息是`**Only variables can be passed by reference**`
+
